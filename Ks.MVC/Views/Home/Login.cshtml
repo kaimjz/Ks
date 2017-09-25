@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>登录页 - 凯哥的小Demo</title>
+    @Styles.Render("~/styles/css")
+    <link href="~/Content/Styles/login.css" rel="stylesheet" />
+</head>
+<body class="layui-layout-body">
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="layui-col-md4 layui-col-md-offset4">
+                <div class="login-row">
+                    <div class="login-header">
+                        <i class="layui-icon">&#xe635;</i>
+                        @*<i class="layui-icon">&#xe62e;</i>*@
+                        凯哥的小Demo
+                    </div>
+                    <div class="login-box">
+                        <div class="login-box-body">
+                            <div class="login-box-header">
+                                <h4>
+                                    <i class="layui-icon">&#xe60b;</i> 请输入您的登录信息
+                                </h4>
+                            </div>
+                            <form class="layui-form">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">用户名</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="username" placeholder="请输入" lay-verify="username" autocomplete="off" class="layui-input" />
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">密码</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="password" placeholder="请输入" lay-verify="password" autocomplete="off" class="layui-input" />
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit lay-filter="*">登录</button>
+                                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/scripts/jquery")
+    @Scripts.Render("~/scripts/layui")
+    <script src="~/Content/Scripts/login.js"></script>
+</body>
+</html>
