@@ -13,8 +13,7 @@ namespace Ks.MVC.Controllers
         {
             return View();
         }
-
-        public ActionResult Login()
+        public ActionResult Welcome()
         {
             return View();
         }

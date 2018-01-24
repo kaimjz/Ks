@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>登录页</title>
+    @Styles.Render("~/styles/base")
+</head>
+<body class="back_login">
+    <div class="login_text">
+        <div class="lo_logo">
+            <img src="~/Content/images/login_logo.png">
+        </div>
+        <form class="lo_input layui-form">
+            <div class="lo_input_c">
+                <span>
+                    <i>U</i><input type="text" name="loginName" placeholder="账号" lay-verify="required" maxlength="25" />
+                </span>
+                <span>
+                    <i>P</i><input type="password" name="password" placeholder="密码" lay-verify="required" maxlength="25" />
+                </span>
+                <span>
+                    <i>C</i><input type="text" id="codeText" style="width: 165px;" placeholder="验证码" lay-verify="code" maxlength="4" />
+                    <a href="javascript:;">
+                        <canvas id="codeCanvas" class="login_code" onclick="createCode()">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+                    </a>
+                </span>
+                <div>
+                    <a lay-submit lay-filter="*" id="btnSubmit">
+                        <img src="~/Content/images/login_btn.png" />
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    @Scripts.Render("~/scripts/base")
+    <script src="~/Content/scripts/login/verificationNumbers.js"></script>
+    <script>
+        $(function () {
+            createCode();
+            layui.use(['form', 'layer'], function () {
+                var form = layui.form, layer = layui.layer;
+                form.verify({
+                    code: function (value, item) {
+                        var valueToUp = value.toUpperCase().trim();
+                        var codeToUp = code.toUpperCase();
+                        if (valueToUp.length <= 0) {
+                            return '输入验证码';
+                        }
+                        else if (valueToUp != codeToUp) {
+                            item.value = '';
+                            return '验证码错误';
+                        }
+                        else {
+                            item.value = '';
+                            createCode()
+                        }
+                    }
+                })
+                form.on("submit(*)", function (data) {
+                    createCode();
+                    getAjax({
+                        url: '/Login/Login',
+                        data: data.field,
+                        success: function (data) {
+                            var result = JSON.parse(data);
+                            if (result.Status) {
+                                location.href = result.Result;
+                            }
+                            else {
+                                layerMsg(result.Result);
+                            }
+                        }
+                    })
+                })
+                $(document).on("keyup", function (e) {
+                    if (e.which == 13) {
+                        $('#btnSubmit').click();
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>
