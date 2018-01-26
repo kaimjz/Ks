@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-using System.Text;
 
 namespace Infrastructure
 {
-    public static class ExtensionHelper
+    public static class DynamicEnum
     {
         #region 操作枚举返回注释
 

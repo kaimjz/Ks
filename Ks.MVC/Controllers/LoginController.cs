@@ -1,9 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Infrastructure;
+using Ks.Domain;
 
 namespace Ks.MVC.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         // GET: Login
         public ActionResult Index()
@@ -14,15 +16,28 @@ namespace Ks.MVC.Controllers
         [HttpPost]
         public string Login(string loginName, string password)
         {
-            var resp = new Response();
-            resp.Status = loginName == "1" && password == "3";
-            if (resp.Status)
+            var resp = new Response()
             {
-                resp.Result = "/Home/Index";
+                Status = false
+            };
+            var userM = new AuthoriseService().Find(loginName);
+            if (userM == null)
+            {
+                resp.Result = "暂无此用户";
+            }
+            else if (userM.Status == 0)
+            {
+                resp.Result = "用户已停用";
+            }
+            else if (userM.Password != password)
+            {
+                resp.Result = "密码错误";
             }
             else
             {
-                resp.Result = "登录失败";
+                resp.Status = true;
+                GlobalInfo.UserId = userM.Id + "";
+                resp.Result = "/Index";
             }
             return JsonHelper.Instance.Serialize(resp);
         }

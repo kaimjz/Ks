@@ -40,7 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthoriseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ks.Models\Ks.Models.csproj">
+      <Project>{FF1210D8-AA87-4BC4-B64A-C75ADF7B1636}</Project>
+      <Name>Ks.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ks.Repository\Ks.Repository.csproj">
+      <Project>{21AAE723-B725-427E-80A9-A85EF4BC1627}</Project>
+      <Name>Ks.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

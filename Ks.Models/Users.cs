@@ -56,6 +56,6 @@ namespace Ks.Models
         /// <summary>
         /// 创建人
         /// </summary>
-        public Guid CreateId { get; set; }
+        public Guid? CreateId { get; set; }
     }
 }

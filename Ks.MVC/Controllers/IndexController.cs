@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Ks.MVC.Controllers
 {
-    public class HomeController : Controller
+    public class IndexController : BaseController
     {
         // GET: Home
         public ActionResult Index()
