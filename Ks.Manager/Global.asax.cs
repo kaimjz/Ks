@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Ks.Manager.Common;
+using Newtonsoft.Json.Linq;
 
-namespace Ks.MVC
+namespace Ks.Manager
 {
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -17,7 +15,7 @@ namespace Ks.MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            
+            ModelBinders.Binders.Add(typeof(JObject), new JobjectModelBinder());
         }
     }
 }

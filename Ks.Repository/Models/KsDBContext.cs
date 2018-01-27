@@ -12,19 +12,15 @@ namespace Ks.Repository.Models
         static KsDBContext()
         {
             //策略一：数据库不存在时重新创建数据库
-
-            Database.SetInitializer(new CreateDatabaseIfNotExists<KsDBContext>());
+            //Database.SetInitializer(new CreateDatabaseIfNotExists<KsDBContext>());
 
             //策略二：每次启动应用程序时创建数据库
-
-            Database.SetInitializer(new DropCreateDatabaseAlways<KsDBContext>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<KsDBContext>());
 
             //策略三：模型更改时重新创建数据库
-
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<KsDBContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<KsDBContext>());
 
             //策略四：从不创建数据库
-
             Database.SetInitializer<KsDBContext>(null);
         }
 

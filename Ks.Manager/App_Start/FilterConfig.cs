@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Ks.MVC
+namespace Ks.Manager
 {
     public class FilterConfig
     {

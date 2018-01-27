@@ -49,6 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperExt.cs" />
+    <Compile Include="Cache\CacheContext.cs" />
+    <Compile Include="Cache\CacheProvider.cs" />
+    <Compile Include="Cache\ICacheProvider.cs" />
+    <Compile Include="Cache\ICacheContext.cs" />
     <Compile Include="DynamicQueryable.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="DynamicEnum.cs" />

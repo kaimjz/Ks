@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Infrastructure;
 
-namespace Ks.MVC.Controllers
+namespace Ks.Manager.Controllers
 {
     public class BaseController : Controller
     {

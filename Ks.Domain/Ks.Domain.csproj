@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{edf11285-a2bc-459e-a7b8-ccc50bb0f921}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ks.Models\Ks.Models.csproj">
       <Project>{FF1210D8-AA87-4BC4-B64A-C75ADF7B1636}</Project>
       <Name>Ks.Models</Name>

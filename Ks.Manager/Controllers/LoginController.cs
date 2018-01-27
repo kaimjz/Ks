@@ -2,8 +2,11 @@
 using System.Web.Mvc;
 using Infrastructure;
 using Ks.Domain;
+using Infrastructure.Cache;
+using Ks.Models;
+using Newtonsoft.Json.Linq;
 
-namespace Ks.MVC.Controllers
+namespace Ks.Manager.Controllers
 {
     public class LoginController : BaseController
     {
@@ -12,7 +15,6 @@ namespace Ks.MVC.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public string Login(string loginName, string password)
         {
@@ -20,7 +22,7 @@ namespace Ks.MVC.Controllers
             {
                 Status = false
             };
-            var userM = new AuthoriseService().Find(loginName);
+            var userM = new AuthoriseService().FindUser(loginName);
             if (userM == null)
             {
                 resp.Result = "暂无此用户";
@@ -36,7 +38,7 @@ namespace Ks.MVC.Controllers
             else
             {
                 resp.Status = true;
-                GlobalInfo.UserId = userM.Id + "";
+                new CacheProvider<Users>().CreateCache("user", userM, DateTime.Now.AddHours(12));
                 resp.Result = "/Index";
             }
             return JsonHelper.Instance.Serialize(resp);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Infrastructure;
 
-namespace Ks.MVC
+namespace Ks.Manager
 {
     public class GlobalInfo
     {

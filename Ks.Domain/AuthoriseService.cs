@@ -5,19 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using Ks.Models;
 using Ks.Repository.Repository;
+using Infrastructure.Cache;
 
 namespace Ks.Domain
 {
     public class AuthoriseService
     {
-        protected UserRepository userRepository;
+        private UserRepository userRepository = new UserRepository();
+        private static CacheProvider<Users> cacheObj = new CacheProvider<Users>();
         public AuthoriseService()
         {
-            userRepository = new UserRepository();
         }
-        public Guid User { get; set; }
+        public static Users User
+        {
+            get
+            {
+                return cacheObj.GetCache("user");
+            }
+            set
+            {
+                cacheObj.CreateCache("user", value, DateTime.Now.AddHours(12));
+            }
+        }
 
-        public Users Find(string account)
+        public Users FindUser(string account)
         {
             return userRepository.FindSingle(u => u.Account == account);
         }
