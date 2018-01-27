@@ -17,5 +17,6 @@ namespace Ks.Manager.Controllers
         {
             return View();
         }
+
     }
 }

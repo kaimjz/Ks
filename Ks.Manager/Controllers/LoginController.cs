@@ -38,7 +38,7 @@ namespace Ks.Manager.Controllers
             else
             {
                 resp.Status = true;
-                new CacheProvider<Users>().CreateCache("user", userM, DateTime.Now.AddHours(12));
+                AuthoriseService.User = userM;
                 resp.Result = "/Index";
             }
             return JsonHelper.Instance.Serialize(resp);

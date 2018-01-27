@@ -1,6 +1,9 @@
 ﻿using System.Linq;
+using System.Reflection;
 using System.Web.Mvc;
 using Infrastructure;
+using Ks.Domain;
+using Ks.Manager.Common;
 
 namespace Ks.Manager.Controllers
 {
@@ -19,15 +22,16 @@ namespace Ks.Manager.Controllers
 
             ControllerName = Request.RequestContext.RouteData.Values["controller"].ToString().ToLower();
             ActionName = filterContext.ActionDescriptor.ActionName.ToLower();
-            if (string.IsNullOrEmpty(GlobalInfo.UserId) && ControllerName != "login")
-            {
-                filterContext.Result = new RedirectResult("/Login");
-                return;
-            }
             var function = this.GetType().GetMethods().FirstOrDefault(u => u.Name.ToLower() == ActionName);
             if (function == null)
             {
                 //throw new Exception("未能找到Action");
+                filterContext.Result = new RedirectResult("/Login");
+                return;
+            }
+            var authorize = function.GetCustomAttribute(typeof(AuthenticateAttribute));
+            if (authorize != null && AuthoriseService.User == null)
+            {
                 filterContext.Result = new RedirectResult("/Login");
                 return;
             }

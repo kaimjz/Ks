@@ -159,11 +159,11 @@ body.mini-navbar .nav-header { padding: 0; background-color: #1ab394;}
 body.body-small.fixed-sidebar.mini-navbar #page-wrapper, body.fixed-sidebar.mini-navbar #page-wrapper { margin: 0 0 0 70px;}
 /********首页结束********/
 /************************登录页*************************/
-.back_login { background: url(/Content/images/login_back.png) no-repeat center;}
-.login_text { position: fixed; left: 55%; top: 18%; transition:0.5s;}
+.back_login { background: url(/Content/images/login_back.png) no-repeat center; }
+.login_text { position: relative; left: 55%; top: 18%; transition:0.5s;}
 .lo_logo{ margin-left:-15px;}
 .lo_logo img { width: 420px;}
-.lo_input { width: 380px; height: 410px; margin-top: 10%; background: url(/Content/images/login_text.png); background-size: 100% 100%; box-shadow: 0px 10px 40px #888; overflow: hidden;}
+.lo_input { width: 380px; height: 410px; margin-top: 2%; background: url(/Content/images/login_text.png); background-size: 100% 100%; box-shadow: 0px 10px 40px #888; overflow: hidden;}
 .lo_input_c { margin: 0 auto; width: 265px; height: 250px; margin-top: 105px;}
 .lo_input_c input { width: 100%; height: 43px; line-height: 43px; border: 1px solid #cfd1d1; border-radius: 5px; margin-bottom: 30px; padding-left: 50px; outline: none; box-sizing: border-box;}
 .lo_input_c span { width: 100%; float: left; position: relative;}

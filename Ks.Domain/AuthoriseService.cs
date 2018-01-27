@@ -11,7 +11,6 @@ namespace Ks.Domain
 {
     public class AuthoriseService
     {
-        private UserRepository userRepository = new UserRepository();
         private static CacheProvider<Users> cacheObj = new CacheProvider<Users>();
         public AuthoriseService()
         {
@@ -28,9 +27,15 @@ namespace Ks.Domain
             }
         }
 
-        public Users FindUser(string account)
+        public Users GetUser(string account)
         {
-            return userRepository.FindSingle(u => u.Account == account);
+            return new UserRepository().FindSingle(u => u.Account == account);
+        }
+
+        public virtual IQueryable<Modules> GetModules()
+        {
+            var moduleIds = new RelevancesRepository().Find(f => f.FirstId == User.Id).Select(f => f.SecondId);
+            return new ModulesRepository().Find(f => moduleIds.Contains(f.Id)).OrderBy(f => f.Sort);
         }
     }
 }
